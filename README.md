@@ -1,57 +1,40 @@
-# Project Name
+# Sample project for Spring Data JPA with Azure SQL Database
 
-(short, 1-3 sentenced, description of the project)
+This sample project is used in the [Use Spring Data JPA with Azure SQL Database](https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-data-jpa-with-azure-sql-server/?WT.mc_id=github-microsoftsamples-judubois) Microsoft documentation quickstart.
 
-## Features
+## Creating the infrastructure
 
-This project framework provides the following features:
+We recommend you create an *env.sh* file to create the following environment variables:
 
-* Feature 1
-* Feature 2
-* ...
+```bash
+#!/bin/sh
 
-## Getting Started
+echo "Setting env variables"
 
-### Prerequisites
+export AZ_RESOURCE_GROUP=tmp-spring-jpa-sql-server
+export AZ_DATABASE_NAME=XXXXXX-tmp-spring-jpa-sql-server
+export AZ_LOCATION=eastus
+export AZ_SQL_SERVER_USERNAME=spring
+export AZ_SQL_SERVER_PASSWORD=XXXXXXXXXXXXXXXXXXX
+export AZ_LOCAL_IP_ADDRESS=$(curl http://whatismyip.akamai.com/)
 
-(ideally very short, if any)
+export SPRING_DATASOURCE_URL="jdbc:sqlserver://$AZ_DATABASE_NAME.database.windows.net:1433;database=demo;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+export SPRING_DATASOURCE_USERNAME=spring@$AZ_DATABASE_NAME
+export SPRING_DATASOURCE_PASSWORD=$AZ_SQL_SERVER_PASSWORD
+```
 
-- OS
-- Library version
-- ...
+You will need to set up a unique `AZ_DATABASE_NAME` as well as a correctly secured `AZ_SQL_SERVER_PASSWORD`.
 
-### Installation
+Once this file is created:
 
-(ideally very short)
+- Use `source env.sh` to set up those environment variables
+- Use `./create-spring-data-sql-server.sh` to create your infrastructure
+- Use `./destroy-spring-data-jpa-sql-server.sh` to delete your infrastructure
 
-- npm install [package name]
-- mvn install
-- ...
+## Running the project
 
-### Quickstart
-(Add steps to get up and running quickly)
+This is a standard Maven project, you can run it from your IDE, or using the provided Maven wrapper:
 
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+```bash
+./mvnw spring-boot:run
+```
