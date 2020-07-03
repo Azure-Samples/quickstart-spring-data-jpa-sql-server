@@ -28,7 +28,7 @@ You will need to set up a unique `AZ_DATABASE_NAME` as well as a correctly secur
 Once this file is created:
 
 - Use `source env.sh` to set up those environment variables
-- Use `./create-spring-data-sql-server.sh` to create your infrastructure
+- Use `./create-spring-data-jpa-sql-server.sh` to create your infrastructure
 - Use `./destroy-spring-data-jpa-sql-server.sh` to delete your infrastructure
 
 ## Running the project
