@@ -348,3 +348,19 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Java projects
+
+env.sh
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+.project
+.metadata
+local.properties
+.classpath
+.settings/
+.loadpath
+.factorypath
+
